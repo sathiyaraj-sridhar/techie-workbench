@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Techie Workbench{% end %}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{ static_url("main.css") }}">
+        {% block css %}{% end %}
+    </head>
+    <body>
+        <header>
+            <a href="/home" class="center">
+                <span class="display-title"><strong>Techie Workbench</strong></span><br/>
+                <span>Tailor-Made for Exploring AWS</span>
+            </a>
+        </header>
+        <aside>
+        </aside>
+        <main>
+            {% block main %}{% end %}
+        </main>
+        <footer>
+            <a href="/home"><strong>Settings</strong></a>
+        </footer>
+        {% if notify %}
+        <script type="text/javascript">
+          document.addEventListener("DOMContentLoaded", function() {
+            alert("{{notify}}");
+          });
+        </script>
+        {% end %}
+        {% block scripts %}{% end %}
+    </body>
+</html>
