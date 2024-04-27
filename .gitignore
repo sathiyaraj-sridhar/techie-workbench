@@ -1,0 +1,13 @@
+# Ignores files following a specific pattern.
+**/.DS_Store
+**/__pycache__
+**/.obsidian
+**/*.tar.gz
+**/*.tgz
+**/*.log
+**/*.env
+**/*.pem
+**/*.task
+**/*.db
+venv
+tmp

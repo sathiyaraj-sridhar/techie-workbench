@@ -1,0 +1,21 @@
+{% extends "layout/base.html" %}
+{% block main %}
+<section>
+    <h1 class="center">System Info</h1>
+    <div class="two-column-grid">
+        {% for name,stats in sysconf.items() %}
+        <table>
+            <caption>{{name}}</caption>
+            <tbody>
+                {% for key,value in stats.items() %}
+                <tr>
+                    <th>{{key}}</th>
+                    <td>{{value}}</td>
+                </tr>
+                {% end %}
+            </tbody>
+        </table>
+        {% end %}
+    </div>
+</section>
+{% end %}
