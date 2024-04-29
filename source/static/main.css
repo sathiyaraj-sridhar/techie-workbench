@@ -1,12 +1,12 @@
 /* Main styles. */
 body {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 300px 1fr 300px;
     grid-template-rows: 100px 1fr 30px;
     grid-template-areas:
-        "hd main"
-        "sd main"
-        "ft main";
+        "hd main aside"
+        "sd main aside"
+        "ft main aside";
     height: 98vh;
     --primary-color: #dadada;
 }
@@ -32,25 +32,34 @@ footer a {
     padding: 0 10px;
 }
 main {
+    border-right: 1px solid var(--primary-color);
     grid-area: main;
+    padding: 1rem;
     overflow: auto;
-    padding: 30px;
 }
 aside {
+    grid-area: aside;
+    margin: 1rem;
+}
+nav {
     border-right: 1px solid var(--primary-color);
     grid-area: sd;
     overflow: auto;
 }
-nav {
+nav ul {
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding-inline-start: 0;
 }
-nav a {
+nav ul a {
     border-bottom: 1px solid var(--primary-color);
     color: inherit;
     padding: 10px;
     text-decoration: none;
 }
+
+/* Table styles. */
 table th,
 table td {
     border-top: 1px solid;
@@ -58,18 +67,27 @@ table td {
     text-align: initial;
 }
 table caption {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 700;
 }
-.display-title {
-    font-size: 2rem;
+
+/* Form styles. */
+form {
+    display: grid;
 }
-.center {
-    text-align: center;
+input {
+    width: 100%;
 }
+
+/* Grid styles. */
 .two-column-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     gap: 30px;
+}
+
+/* Font styles. */
+.display-title {
+    font-size: 2rem;
 }

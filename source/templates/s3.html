@@ -1,0 +1,43 @@
+{% extends "layout/base.html" %}
+{% block main %}
+            <h1 align="center">Amazon S3</h1>
+            <h2 align="center">Hands-on</h2>
+            <section class="two-column-grid">
+                <table>
+                    <caption>List Object</caption>
+                    <tr>
+                        <td>No objects found.</td>
+                    </tr>
+                </table>
+                <form action="/s3/upload" method="post" enctype="multipart/form-data">
+                    {% module xsrf_form_html() %}
+                    <table>
+                        <caption>Upload Object</caption>
+                        <tr>
+                            <td><input type="file" name="object"></td>
+                        </tr>
+                        <tr>
+                            <td><button type="submit">Submit</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </section>
+{% end %}
+{% block aside %}
+            <h3 align="center">Settings</h3>
+            <p>Please complete the settings before trying hands-on.</p>
+            <form action="/s3/settings" method="post">
+                {% module xsrf_form_html() %}
+                <table>
+                    <caption>Bucket</caption>
+                    <tr>
+                        <td><label for="bucketname">Name:</label></td>
+                        <td><input type="text" name="bucketname" value="{{s3['bucketname']}}"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button type="submit">Submit</button></td>
+                    </tr>
+                </table>
+            </form>
+{% end %}

@@ -12,7 +12,10 @@ import tornado
 # Import custom modules.
 from config import appconf,sysconf
 from logger import logger
+from models.redis import Redis
 from handlers.main import MainHandler
+from handlers.settings import SettingsHandler
+from handlers.s3 import S3Handler
 
 # Port on which the Tornado listens, this can be passed as command line arguments.
 tornado.options.define('port',default=80,type=int)
@@ -25,7 +28,7 @@ class App(tornado.web.Application):
 
         self.conf = appconf
         self.sysconf = sysconf
-        self.notify = None
+        self.redis = Redis
 
         settings = {
           "template_path":os.path.join(os.path.dirname(__file__),'templates'),
@@ -42,7 +45,11 @@ class App(tornado.web.Application):
         handlers = [
           (r'/',MainHandler),
           (r'/health',MainHandler),
-          (r'/home',MainHandler)
+          (r'/home',MainHandler),
+          (r'/settings',SettingsHandler),
+          (r'/s3',S3Handler),
+          (r'/s3/settings',S3Handler),
+          (r'/s3/upload',S3Handler)
         ]
 
         tornado.web.Application.__init__(self,handlers,**settings)
