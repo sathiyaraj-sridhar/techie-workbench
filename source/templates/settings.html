@@ -1,0 +1,28 @@
+{% extends "layout/base.html" %}
+{% block main %}
+            <h1 align="center">Settings</h1>
+            <section class="two-column-grid">
+                <form action="/settings" method="post">
+                    {% module xsrf_form_html() %}
+                    <table>
+                        <caption>Redis Database</caption>
+                        <tr>
+                            <td><label for="host">Host:</label></td>
+                            <td><input type="text" name="host" value="{{redis['host']}}"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="port">Port:</label></td>
+                            <td><input type="number" name="port" value="{{redis['port']}}"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="status">Status:</label></td>
+                            <td><p {% if redis['connection']['status']=='success' %} style="color:green" {% else %} style="color:red" {% end %}>{{redis['connection']['message']}}</p></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><button type="submit">Connect</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </section>
+{% end %}

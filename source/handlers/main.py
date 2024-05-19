@@ -14,7 +14,8 @@ class MainHandler(tornado.web.RequestHandler):
 
     def initialize(self):
         """Called before handling HTTP methods."""
-        self.application.notify = None
+        self.vars = {}
+        self.vars['notify'] = None
 
     def get(self):
         """Handling HTTP GET method."""
@@ -25,6 +26,7 @@ class MainHandler(tornado.web.RequestHandler):
             self.write('ok')
             return
         if self.request.path=='/home':
-            self.render('home.html',sysconf=self.application.sysconf,notify=self.application.notify)
+            self.vars['sysconf'] = self.application.sysconf
+            self.render('home.html',**self.vars)
             return
         raise HTTPError(400)
