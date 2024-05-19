@@ -49,7 +49,8 @@ class App(tornado.web.Application):
           (r'/settings',SettingsHandler),
           (r'/s3',S3Handler),
           (r'/s3/settings',S3Handler),
-          (r'/s3/upload',S3Handler)
+          (r'/s3/upload',S3Handler),
+          (r'/s3/delete',S3Handler)
         ]
 
         tornado.web.Application.__init__(self,handlers,**settings)

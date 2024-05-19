@@ -14,7 +14,7 @@ class SettingsHandler(MainHandler):
         self.vars['redis'] = {
             'host': self.application.redis.host,
             'port': self.application.redis.port,
-            'status': self.application.redis.status()
+            'connection': self.application.redis.status()
         }
         self.render('settings.html',**self.vars)
 

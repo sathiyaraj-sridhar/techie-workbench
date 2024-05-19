@@ -32,11 +32,11 @@ class Redis:
         """Returns the status of the Redis connection."""
         try:
             self.conn.ping()
-            return 'Connection successful.'
+            return {'status':'success','message':'Connection successful.'}
         except redis.exceptions.ConnectionError as error:
-            return error
+            return {'status':'failure','message':str(error)}
         except redis.exceptions.TimeoutError as error:
-            return error
+            return {'status':'failure','message':str(error)}
 
     def set(self):
         """Set the data."""

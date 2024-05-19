@@ -16,7 +16,7 @@
                         </tr>
                         <tr>
                             <td><label for="status">Status:</label></td>
-                            <td><p>{{redis['status']}}</p></td>
+                            <td><p {% if redis['connection']['status']=='success' %} style="color:green" {% else %} style="color:red" {% end %}>{{redis['connection']['message']}}</p></td>
                         </tr>
                         <tr>
                             <td></td>

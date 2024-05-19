@@ -3,24 +3,56 @@
             <h1 align="center">Amazon S3</h1>
             <h2 align="center">Hands-on</h2>
             <section class="two-column-grid">
-                <table>
-                    <caption>List Object</caption>
-                    <tr>
-                        <td>No objects found.</td>
-                    </tr>
-                </table>
+                <form action="/s3/delete" method="post" enctype="multipart/form-data">
+                    {% module xsrf_form_html() %}
+                    <table>
+                        <caption>Delete Object</caption>
+                        <tr>
+                            <td><label for="key">Key:</label></td>
+                            <td><input type="text" name="key"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><button type="submit">Submit</button></td>
+                        </tr>
+                    </table>
+                </form>
                 <form action="/s3/upload" method="post" enctype="multipart/form-data">
                     {% module xsrf_form_html() %}
                     <table>
                         <caption>Upload Object</caption>
                         <tr>
+                            <td><label for="key">Key:</label></td>
+                            <td><input type="text" name="key"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="object">Object:</label></td>
                             <td><input type="file" name="object"></td>
                         </tr>
                         <tr>
+                            <td></td>
                             <td><button type="submit">Submit</button></td>
                         </tr>
                     </table>
                 </form>
+            </section>
+            <section class="one-column-grid">
+                <table>
+                    <caption>List Object</caption>
+                    {% if s3['objects'] %}
+                    {% for obj in s3['objects'] %}
+                    <tr>
+                        {% for value in obj.values() %}
+                        <td>{{value}}</td>
+                        {% end %}
+                    </tr>
+                    {% end %}
+                    {% else %}
+                    <tr>
+                        <td>No objects found.</td>
+                    </tr>
+                    {% end %}
+                </table>
             </section>
 {% end %}
 {% block aside %}
@@ -33,6 +65,10 @@
                     <tr>
                         <td><label for="bucketname">Name:</label></td>
                         <td><input type="text" name="bucketname" value="{{s3['bucketname']}}"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="status">Status:</label></td>
+                        <td><p {% if s3['connection']['status']=='success' %} style="color:green" {% else %} style="color:red" {% end %}>{{s3['connection']['message']}}</p></td>
                     </tr>
                     <tr>
                         <td></td>
