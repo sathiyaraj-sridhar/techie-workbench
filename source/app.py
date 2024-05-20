@@ -39,7 +39,8 @@ class App(tornado.web.Application):
           "compress_response":True,
           "autoreload":True,
           "template_whitespace":"all",
-          "static_path":os.path.join(os.path.dirname(__file__),'static')
+          "static_path":os.path.join(os.path.dirname(__file__),'static'),
+          "static_url_prefix":self.conf['static_url_prefix']
         }
 
         handlers = [
