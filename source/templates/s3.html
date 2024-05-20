@@ -40,6 +40,13 @@
                 <table>
                     <caption>List Object</caption>
                     {% if s3['objects'] %}
+                    <tr>
+                        <th>Key</th>
+                        <th>Last Modified</th>
+                        <th>ETag</th>
+                        <th>Size</th>
+                        <th>Storage Class</th>
+                    </tr>
                     {% for obj in s3['objects'] %}
                     <tr>
                         {% for value in obj.values() %}
