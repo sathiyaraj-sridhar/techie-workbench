@@ -2,6 +2,8 @@
 
 This application is designed to demonstrate how to deploy an application on the AWS cloud and integrate AWS services using the AWS SDK.
 
+![Screenshot of the home page showing system metrics.](tw-sshot-home.png)
+![Screenshot of Amazon S3 page showing basic object-level operations such as listing, uploading, and deleting objects.](tw-sshot-s3.png)
 
 ## App Setup
 
@@ -62,14 +64,24 @@ python source/app.py
 sudo dnf install make,gcc
 ```
 
-- Download the Redis source archive and install it.
+- Download the Redis source file.
 
 ```
 cd /tmp
 curl -O https://download.redis.io/redis-stable.tar.gz
+```
+
+- Compile Redis.
+
+```
 tar -xzvf redis-stable.tar.gz
 cd redis-stable
 make
+```
+
+- If your compilation succeeds, you will find the Redis binaries in the `src` directory. Let's install these binaries in `/usr/local/bin`.
+
+```
 sudo make install
 ```
 
