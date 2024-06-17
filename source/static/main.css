@@ -75,7 +75,8 @@ table caption {
 form {
     display: grid;
 }
-input {
+input,
+textarea {
     width: 100%;
 }
 

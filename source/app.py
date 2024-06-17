@@ -16,6 +16,7 @@ from models.redis import Redis
 from handlers.main import MainHandler
 from handlers.settings import SettingsHandler
 from handlers.s3 import S3Handler
+from handlers.ses import SESHandler
 
 # Port on which the Tornado listens, this can be passed as command line arguments.
 tornado.options.define('port',default=80,type=int)
@@ -51,7 +52,10 @@ class App(tornado.web.Application):
           (r'/s3',S3Handler),
           (r'/s3/settings',S3Handler),
           (r'/s3/upload',S3Handler),
-          (r'/s3/delete',S3Handler)
+          (r'/s3/delete',S3Handler),
+          (r'/ses',SESHandler),
+          (r'/ses/settings',SESHandler),
+          (r'/ses/sendemail',SESHandler)
         ]
 
         tornado.web.Application.__init__(self,handlers,**settings)

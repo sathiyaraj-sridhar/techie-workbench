@@ -1,0 +1,51 @@
+{% extends "layout/base.html" %}
+{% block main %}
+            <h1 align="center">Amazon SES</h1>
+            <h2 align="center">Hands-on</h2>
+            <section class="one-column-grid">
+                <form action="/ses/sendemail" method="post" enctype="multipart/form-data">
+                    {% module xsrf_form_html() %}
+                    <table>
+                        <caption>Send Email</caption>
+                        <tr>
+                            <td><label for="destination">To:</label></td>
+                            <td><input type="text" name="destination"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="subject">Subject:</label></td>
+                            <td><input type="text" name="subject"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Body:</label></td>
+                            <td><textarea name="body" rows="10" cols="80"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><button type="submit">Submit</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </section>
+{% end %}
+{% block aside %}
+            <h3 align="center">Settings</h3>
+            <p>Please complete the settings before trying hands-on.</p>
+            <form action="/ses/settings" method="post">
+                {% module xsrf_form_html() %}
+                <table>
+                    <caption>Verified Email</caption>
+                    <tr>
+                        <td><label for="source">Email:</label></td>
+                        <td><input type="text" name="source" value="{{ses['source']}}"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="status">Status:</label></td>
+                        <td><p {% if ses['connection']['status']=='success' %} style="color:green" {% else %} style="color:red" {% end %}>{{ses['connection']['message']}}</p></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button type="submit">Submit</button></td>
+                    </tr>
+                </table>
+            </form>
+{% end %}
